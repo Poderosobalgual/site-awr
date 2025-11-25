@@ -16,10 +16,17 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #000000 0%, #2540ac 100%);
             min-height: 100vh;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .card {
@@ -53,30 +60,29 @@
             100% { background-position: 0% 50%; }
         }
 
-        .logo {
+        /* ÁREA DA LOGO - ONDE VOCÊ COLOCA SUA IMAGEM */
+        .logo-area {
             width: 120px;
             height: 120px;
-            background: none;
             border-radius: 50%;
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            color: rgb(255, 255, 255);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            background: white;
         }
 
-        .logo img {
+        .logo-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
         }
 
-        .logo::before {
+        .logo-area::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -98,7 +104,9 @@
             font-weight: bold;
             color: #000000;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #9fb2d4, #f8f8f8);
+            background: linear-gradient(135deg, #001aff, #2f00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .tagline {
@@ -355,10 +363,9 @@
                 font-size: 24px;
             }
             
-            .logo {
+            .logo-area {
                 width: 100px;
                 height: 100px;
-                font-size: 40px;
             }
             
             .link-button {
@@ -407,132 +414,138 @@
     </style>
 </head>
 <body>
-    <!-- Cartão Digital -->
-    <div class="card" id="mainCard">
-        <div class="floating-elements">
-            <div class="floating-note">♪</div>
-            <div class="floating-note">♫</div>
-            <div class="floating-note">♪</div>
-        </div>
-        
-        <div class="avatar.png">
-            <img src="C:\Users\gusta\OneDrive\site awr__somluzes.html 2_files\avatar.png" alt="AWR SOM LUZES Logo">
-        </div>
-        
-        <h1 class="company-name">AWR SOM LUZES</h1>
-        
-        <p class="description">
-            Transformamos seus eventos em experiências inesquecíveis com som de qualidade profissional e iluminação espetacular. Casamentos, festas, eventos corporativos e muito mais!
-        </p>
-        
-        <div class="links">
-            <a href="https://wa.me/5541997915882?text=Olá! Gostaria de saber mais sobre os serviços da AWR SOM LUZES" class="link-button whatsapp" target="_blank">
-                <i class="fab fa-whatsapp link-icon"></i>
-                WhatsApp
-            </a>
+    <div class="container">
+        <!-- Cartão Digital -->
+        <div class="card" id="mainCard">
+            <div class="floating-elements">
+                <div class="floating-note">♪</div>
+                <div class="floating-note">♫</div>
+                <div class="floating-note">♪</div>
+            </div>
             
-            <a href="https://www.instagram.com/awr__som_luzes/" class="link-button instagram" target="_blank">
-                <i class="fab fa-instagram link-icon"></i>
-                Instagram
-            </a>
+            <!-- ÁREA DA LOGO - ONDE VOCÊ COLOCA SUA IMAGEM -->
+            <div class="logo-area">
+                <!-- SUBSTITUA ESTA URL PELA SUA IMAGEM -->
+                <img src="avatar.png" alt="Logo AWR" class="logo-image">
+            </div>
             
-            <a href="#" class="link-button portfolio" id="portfolioBtn">
-                <i class="fas fa-folder-open link-icon"></i>
-                Nosso Portfólio
-            </a>
-        </div>
-        
-        <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> awrsomluzes@hotmail.com</p>
-        </div>
-    </div>
-
-    <!-- Portfólio -->
-    <div class="portfolio-container" id="portfolioContainer">
-        <div class="portfolio-header">
-            <h1>Portfólio AWR SOM LUZES</h1>
-            <p>Confira alguns dos nossos trabalhos em eventos</p>
-        </div>
-
-        <div class="portfolio-section">
-            <h2 class="section-title">Vídeos</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <video controls poster="https://via.placeholder.com/300x200/001f3f/ffffff?text=Casamento">
-                        <source src="#" type="video/mp4">
-                        Seu navegador não suporta o elemento de vídeo.
-                    </video>
-                    <div class="item-info">
-                        <h3>Casamento</h3>
-                    </div>
-                </div>
+            <h1 class="company-name">AWR SOM LUZES</h1>
+            
+            <p class="tagline">Sua Experiência em Som e Iluminação</p>
+            
+            <p class="description">
+                Transformamos seus eventos em experiências inesquecíveis com som de qualidade profissional e iluminação espetacular. Casamentos, festas, eventos corporativos e muito mais!
+            </p>
+            
+            <div class="links">
+                <a href="https://wa.me/5541997915882?text=Olá! Gostaria de saber mais sobre os serviços da AWR SOM LUZES" class="link-button whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp link-icon"></i>
+                    WhatsApp
+                </a>
                 
-                <div class="portfolio-item">
-                    <video controls poster="https://via.placeholder.com/300x200/003366/ffffff?text=Aniversário">
-                        <source src="#" type="video/mp4">
-                        Seu navegador não suporta o elemento de vídeo.
-                    </video>
-                    <div class="item-info">
-                        <h3>Aniversário</h3>
-                    </div>
-                </div>
+                <a href="https://www.instagram.com/awr__som_luzes/" class="link-button instagram" target="_blank">
+                    <i class="fab fa-instagram link-icon"></i>
+                    Instagram
+                </a>
                 
-                <div class="portfolio-item">
-                    <video controls poster="https://via.placeholder.com/300x200/0056b3/ffffff?text=Corporativo">
-                        <source src="#" type="video/mp4">
-                        Seu navegador não suporta o elemento de vídeo.
-                    </video>
-                    <div class="item-info">
-                        <h3>Corporativo</h3>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <video controls poster="https://via.placeholder.com/300x200/0074D9/ffffff?text=Formatura">
-                        <source src="#" type="video/mp4">
-                        Seu navegador não suporta o elemento de vídeo.
-                    </video>
-                    <div class="item-info">
-                        <h3>Formatura</h3>
-                    </div>
-                </div>
+                <a href="#" class="link-button portfolio" id="portfolioBtn">
+                    <i class="fas fa-folder-open link-icon"></i>
+                    Nosso Portfólio
+                </a>
+            </div>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> awrsomluzes@hotmail.com</p>
             </div>
         </div>
 
-        <div class="portfolio-section">
-            <h2 class="section-title">Fotos</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://via.placeholder.com/300x200/001f3f/ffffff?text=Casamento" alt="Casamento">
-                    <div class="item-info">
-                        <h3>Casamento</h3>
+        <!-- Portfólio -->
+        <div class="portfolio-container" id="portfolioContainer">
+            <div class="portfolio-header">
+                <h1>Portfólio AWR SOM LUZES</h1>
+                <p>Confira alguns dos nossos trabalhos em eventos</p>
+            </div>
+
+            <div class="portfolio-section">
+                <h2 class="section-title">Vídeos</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <video controls poster="https://via.placeholder.com/300x200/001f3f/ffffff?text=Casamento">
+                            <source src="#" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                        <div class="item-info">
+                            <h3>Casamento</h3>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <img src="https://via.placeholder.com/300x200/003366/ffffff?text=Aniversário" alt="Aniversário">
-                    <div class="item-info">
-                        <h3>Aniversário</h3>
+                    
+                    <div class="portfolio-item">
+                        <video controls poster="https://via.placeholder.com/300x200/003366/ffffff?text=Aniversário">
+                            <source src="#" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                        <div class="item-info">
+                            <h3>Aniversário</h3>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <img src="https://via.placeholder.com/300x200/0056b3/ffffff?text=Corporativo" alt="Corporativo">
-                    <div class="item-info">
-                        <h3>Corporativo</h3>
+                    
+                    <div class="portfolio-item">
+                        <video controls poster="https://via.placeholder.com/300x200/0056b3/ffffff?text=Corporativo">
+                            <source src="#" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                        <div class="item-info">
+                            <h3>Corporativo</h3>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <img src="https://via.placeholder.com/300x200/0074D9/ffffff?text=Formatura" alt="Formatura">
-                    <div class="item-info">
-                        <h3>Formatura</h3>
+                    
+                    <div class="portfolio-item">
+                        <video controls poster="https://via.placeholder.com/300x200/0074D9/ffffff?text=Formatura">
+                            <source src="#" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                        <div class="item-info">
+                            <h3>Formatura</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <a href="#" class="back-button" id="backBtn">Voltar ao Cartão Digital</a>
+            <div class="portfolio-section">
+                <h2 class="section-title">Fotos</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x200/001f3f/ffffff?text=Casamento" alt="Casamento">
+                        <div class="item-info">
+                            <h3>Casamento</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x200/003366/ffffff?text=Aniversário" alt="Aniversário">
+                        <div class="item-info">
+                            <h3>Aniversário</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x200/0056b3/ffffff?text=Corporativo" alt="Corporativo">
+                        <div class="item-info">
+                            <h3>Corporativo</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x200/0074D9/ffffff?text=Formatura" alt="Formatura">
+                        <div class="item-info">
+                            <h3>Formatura</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="back-button" id="backBtn">Voltar ao Cartão Digital</a>
+        </div>
     </div>
 
     <script>
@@ -591,7 +604,7 @@
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
             portfolioContainer.style.display = 'none';
-            mainCard.style.display = 'flex';
+            mainCard.style.display = 'block';
         });
 
         // Detecta se é mobile para ajustar comportamentos
