@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWR SOM LUZES</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #2540ac 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(3, 7, 238, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #001aff, #0400ff, #2f00ff, #4d58f3, #000000);
+            background-size: 300% 300%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: none;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: rgb(255, 255, 255);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #9fb2d4, #f8f8f8);
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #080808;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #000000;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .link-button:hover::before {
+            left: 100%;
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, #0056b3, #003366);
+            color: white;
+        }
+
+        .whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .instagram {
+            background: linear-gradient(135deg, #003366, #001f3f);
+            color: white;
+        }
+
+        .instagram:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(228, 64, 95, 0.3);
+        }
+
+        .portfolio {
+            background: linear-gradient(135deg, #001f3f, #000000);
+            color: white;
+        }
+
+        .portfolio:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .link-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-note {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-note:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-note:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-note:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Estilos do Portfólio */
+        .portfolio-container {
+            display: none;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .portfolio-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #9fb2d4, #f8f8f8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .portfolio-header p {
+            font-size: 18px;
+            opacity: 0.8;
+            color: white;
+        }
+
+        .portfolio-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #001aff, #0400ff, #2f00ff, #4d58f3, #000000);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .portfolio-item video,
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .item-info {
+            padding: 15px;
+            text-align: center;
+            background: white;
+            color: #333;
+        }
+
+        .item-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px 20px;
+            background: white;
+            color: #003366;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #003366;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+            background: #003366;
+            color: white;
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .company-name {
+                font-size: 24px;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            
+            .link-button {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            .portfolio-header h1 {
+                font-size: 28px;
+            }
+            
+            .portfolio-header p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animação de entrada */
+        .card {
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cartão Digital -->
+    <div class="card" id="mainCard">
+        <div class="floating-elements">
+            <div class="floating-note">♪</div>
+            <div class="floating-note">♫</div>
+            <div class="floating-note">♪</div>
+        </div>
+        
+        <div class="avatar.png">
+            <img src="C:\Users\gusta\OneDrive\site awr__somluzes.html 2_files\avatar.png" alt="AWR SOM LUZES Logo">
+        </div>
+        
+        <h1 class="company-name">AWR SOM LUZES</h1>
+        
+        <p class="description">
+            Transformamos seus eventos em experiências inesquecíveis com som de qualidade profissional e iluminação espetacular. Casamentos, festas, eventos corporativos e muito mais!
+        </p>
+        
+        <div class="links">
+            <a href="https://wa.me/5541997915882?text=Olá! Gostaria de saber mais sobre os serviços da AWR SOM LUZES" class="link-button whatsapp" target="_blank">
+                <i class="fab fa-whatsapp link-icon"></i>
+                WhatsApp
+            </a>
+            
+            <a href="https://www.instagram.com/awr__som_luzes/" class="link-button instagram" target="_blank">
+                <i class="fab fa-instagram link-icon"></i>
+                Instagram
+            </a>
+            
+            <a href="#" class="link-button portfolio" id="portfolioBtn">
+                <i class="fas fa-folder-open link-icon"></i>
+                Nosso Portfólio
+            </a>
+        </div>
+        
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> awrsomluzes@hotmail.com</p>
+        </div>
+    </div>
+
+    <!-- Portfólio -->
+    <div class="portfolio-container" id="portfolioContainer">
+        <div class="portfolio-header">
+            <h1>Portfólio AWR SOM LUZES</h1>
+            <p>Confira alguns dos nossos trabalhos em eventos</p>
+        </div>
+
+        <div class="portfolio-section">
+            <h2 class="section-title">Vídeos</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <video controls poster="https://via.placeholder.com/300x200/001f3f/ffffff?text=Casamento">
+                        <source src="#" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                    <div class="item-info">
+                        <h3>Casamento</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <video controls poster="https://via.placeholder.com/300x200/003366/ffffff?text=Aniversário">
+                        <source src="#" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                    <div class="item-info">
+                        <h3>Aniversário</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <video controls poster="https://via.placeholder.com/300x200/0056b3/ffffff?text=Corporativo">
+                        <source src="#" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                    <div class="item-info">
+                        <h3>Corporativo</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <video controls poster="https://via.placeholder.com/300x200/0074D9/ffffff?text=Formatura">
+                        <source src="#" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                    <div class="item-info">
+                        <h3>Formatura</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-section">
+            <h2 class="section-title">Fotos</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/001f3f/ffffff?text=Casamento" alt="Casamento">
+                    <div class="item-info">
+                        <h3>Casamento</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/003366/ffffff?text=Aniversário" alt="Aniversário">
+                    <div class="item-info">
+                        <h3>Aniversário</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/0056b3/ffffff?text=Corporativo" alt="Corporativo">
+                    <div class="item-info">
+                        <h3>Corporativo</h3>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/0074D9/ffffff?text=Formatura" alt="Formatura">
+                    <div class="item-info">
+                        <h3>Formatura</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="back-button" id="backBtn">Voltar ao Cartão Digital</a>
+    </div>
+
+    <script>
+        // Adiciona efeito de clique nos botões
+        document.querySelectorAll('.link-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Cria efeito de ripple
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // CSS para animação do ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Navegação entre cartão e portfólio
+        const mainCard = document.getElementById('mainCard');
+        const portfolioContainer = document.getElementById('portfolioContainer');
+        const portfolioBtn = document.getElementById('portfolioBtn');
+        const backBtn = document.getElementById('backBtn');
+
+        portfolioBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            mainCard.style.display = 'none';
+            portfolioContainer.style.display = 'block';
+        });
+
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            portfolioContainer.style.display = 'none';
+            mainCard.style.display = 'flex';
+        });
+
+        // Detecta se é mobile para ajustar comportamentos
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // Remove hover effects em mobile
+            document.body.classList.add('mobile');
+        }
+    </script>
+</body>
+</html>
